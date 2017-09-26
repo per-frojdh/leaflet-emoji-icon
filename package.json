@@ -1,10 +1,10 @@
 {
-  "name": "leaflet-lib-boilerplate",
+  "name": "leaflet-emoji-icon",
   "version": "0.0.1",
-  "main": "dist/leaflet-lib-boilerplate.cjs.js",
-  "module": "dist/leaflet-lib-boilerplate.esm.js",
-  "browser": "dist/leaflet-lib-boilerplate.umd.js",
-  "minified": "dist/leaflet-lib-boilerplate.min.js",
+  "main": "dist/leaflet-emoji-icon.cjs.js",
+  "module": "dist/leaflet-emoji-icon.esm.js",
+  "browser": "dist/leaflet-emoji-icon.umd.js",
+  "minified": "dist/leaflet-emoji-icon.min.js",
   "description": "",
   "keywords": [],
   "author": "",
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "build": "rollup --config",
-    "rollup:watch": "rollup --config --watch",
+    "watch": "rollup --config --watch",
     "test": "jest"
   },
   "devDependencies": {
@@ -37,8 +37,8 @@
     "rollup-watch": "4.0.0"
   },
   "dependencies": {
-    "@turf/square-grid": "^4.7.3",
-    "leaflet": "^1.2.0"
+    "leaflet": "^1.2.0",
+    "node-emoji": "^1.8.1"
   },
   "jest": {
     "moduleFileExtensions": [

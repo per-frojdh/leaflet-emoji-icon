@@ -1,45 +1,32 @@
 import L from 'leaflet';
-import squareGrid from '@turf/square-grid';
+import emoji from 'node-emoji'
 
-L.MyPlugin = L.Layer.extend({
+L.Icon.Emoji = L.Icon.extend({
   initialize: function (options) {
-    L.Util.setOptions(this, options);
-    console.log("initialize");
+    L.Util.setOptions(this, options)
 
+    // Set the iconsize to the same as the font-size passed through the options.
+    this.options.iconSize = [this.options.size, this.options.size]
+
+    // Adjust the anchor of the icon with the size.
+    // The reason the horizontal align is different from the vertical (I think) is due to the content being a font.
+    // Toggle the backgroundcolor on the div, and you'll see a white edge on the left side of the text.
+    this.options.iconAnchor = [this.options.size * 0.68, this.options.size * 0.5]
   },
-  onAdd: function(map) {
-    this._featureCollection = squareGrid(
-      this.options.extent,
-      this.options.cellWidth,
-      this.options.units
-    );
+  createIcon: function() {
+    // Create the div-container for the icon
+    var container = L.DomUtil.create('div', 'emoji-container')
 
-    this._layer = new L.GeoJSON(this._featureCollection);
-    this._addPropertiesToLayers();
+    // Set the innerHTML to the emoji-unicode of the options.
+    container.innerHTML = emoji.get(this.options.emoji)
 
-    this._layer.eachLayer(function(layer) {
-      layer.on('click', function() {
-        if (!this.isToggled) {
-          layer.setStyle({
-            fillColor: 'orange'
-          })
-        } else {
-          layer.setStyle({
-            fillColor: 'blue'
-          })
-        }
+    // Adjust font-size and line-height.
+    container.style.fontSize = this.options.size + 'px'
+    container.style.lineHeight = this.options.size + 'px'
 
-        this.isToggled = !this.isToggled;
-
-      })
-    })
-
-    this._layer.addTo(map);
-  },
-  _addPropertiesToLayers: function() {
-    this._layer.eachLayer(function(layer) {
-      layer.isToggled = false;
-    });
+    // Call the Icon-specific method inherited from L.Icon
+    this._setIconStyles(container, 'icon')
+    return container;
   }
 })
 
