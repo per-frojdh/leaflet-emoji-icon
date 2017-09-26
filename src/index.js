@@ -30,3 +30,6 @@ L.Icon.Emoji = L.Icon.extend({
   }
 })
 
+export function leafletEmoji(options) {
+  return new L.Icon.Emoji(options)
+}
