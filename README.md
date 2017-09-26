@@ -7,3 +7,19 @@ In order to create a plugin in a 'modern' way, the code is bundled together with
 *Note*: The bundle created does not include Leaflet, but expects Leaflet to be loaded separately.  
 
 See `index.html` for example usage.
+
+### Instructions
+
+To build the bundle, use the command below.
+```
+npm run build
+```
+
+To start the watch-process, for continuous building, use the command below.
+```
+npm run watch
+```
+
+
+### TODO
+* Add tests
